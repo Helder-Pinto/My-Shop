@@ -43,27 +43,27 @@ class ShoppingDetail {
         image = dictionary[kIMAGE] as! String
         
     }
-//    func dictionaryFromItem(item: ShoppingList) -> NSDictionary {
-//
-//        return NSDictionary(objects: [item.name, item.totalPrice, item.totalItems, item.id, dateFormatter().string(from: item.date), item.ownerId], forKeys: [kNAME as NSCopying, kTOTALPRICE as NSCopying, kTOTALITEMS as NSCopying, kSHOPPINGITEMID as NSCopying, kDATE as NSCopying, kOWNERID as NSCopying])
-//    }
-//
-//    func saveItemsInBackground(shoppingList: ShoppingList, completion: @escaping (_ error: Error? ) -> Void) {
-//
-//
-//        let ref = firebase.child(kSHOPPINGLIST).child("1234").childByAutoId()
-//
-//        shoppingList.id = ref.key!
-//
-//        ref.setValue(dictionaryFromItem(item: shoppingList)) {(error, ref) -> Void in
-//
-//            completion(error)
-//        }
-//    }
-//    func delteItemInBackground(shoppinList: ShoppingList) {
-//
-//        let ref = firebase.child(kSHOPPINGLIST).child("1234").child(shoppinList.id)
-//        ref.removeValue()
-//    }
-//}
+    func dictionaryFromItem(item: ShoppingDetail) -> NSDictionary {
+
+        return NSDictionary(objects: [item.name, item.info, item.quantity, item.price, item.shoppingItemId, item.ShoppingListId, item.isBought, item.image], forKeys: [kNAME as NSCopying, kINFO as NSCopying, kQUANTITY as NSCopying, kPRICE as NSCopying, kSHOPPINGITEMID as NSCopying, kSHOPPINGLISTID as NSCopying, kISBOUGHT as NSCopying, kIMAGE as NSCopying])
+    }
+
+    func saveItemsInBackground(shoppingDetail: ShoppingDetail, completion: @escaping (_ error: Error? ) -> Void) {
+
+
+        let ref = firebase.child(kSHOPPINGITEM).child(shoppingDetail.ShoppingListId).childByAutoId()
+
+        shoppingDetail.shoppingItemId = ref.key!
+
+        ref.setValue(dictionaryFromItem(item: shoppingDetail)) {(error, ref) -> Void in
+
+            completion(error)
+        }
+    }
+    func delteItemInBackground(shoppinDetail: ShoppingDetail) {
+
+        let ref = firebase.child(kSHOPPINGLIST).child(shoppinDetail.ShoppingListId).child(shoppinDetail.shoppingItemId)
+        ref.removeValue()
+    }
+
 }
