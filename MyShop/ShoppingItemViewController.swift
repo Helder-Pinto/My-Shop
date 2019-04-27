@@ -77,6 +77,28 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     
     //MARK: TableViewDelegates
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var item: ShoppingDetail!
+        
+        if indexPath.section == 0 {
+            
+            item = shoppingItems[indexPath.row]
+        } else {
+            
+            item = boughtItems[indexPath.row]
+        }
+        
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddItemVC") as! AddItemViewController
+        
+        vc.shoppingList = shoppingDetails
+        vc.shoppingToEditItem = item
+        
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var title: String!
@@ -113,11 +135,39 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     //MARK: IBActions
     @IBAction func addButtonPressed(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddItemVC") as! AddItemViewController
         
-        vc.shoppingList = self.shoppingDetails
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        self.present(vc, animated: true, completion: nil)
+        
+        
+        let newItemAction = UIAlertAction(title: "New Item", style: .default) { (alert) in
+            
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddItemVC") as! AddItemViewController
+            
+            vc.shoppingList = self.shoppingDetails
+            
+            self.present(vc, animated: true, completion: nil)
+   
+            
+        }
+        
+        let searchItemAction = UIAlertAction(title: "Search Item", style: .default) { (alert) in
+            
+            
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+            
+        }
+        
+        optionMenu.addAction(newItemAction)
+        optionMenu.addAction(searchItemAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+        
+        
     }
     
     //MARK: Load ShoppingItems

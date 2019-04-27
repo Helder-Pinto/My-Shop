@@ -21,6 +21,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="GD0-bc-O6a" kind="relationship" relationship="viewControllers" id="YXh-qN-SjE"/>
+                        <segue destination="FQE-kE-cGK" kind="relationship" relationship="viewControllers" id="6Hn-gi-jLh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktA-ZN-Jpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -189,26 +190,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLB-Dx-U3w">
-                                                    <rect key="frame" x="291" y="38" width="69" height="21"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1M-4l-y1D">
+                                                    <rect key="frame" x="332" y="36" width="31" height="29"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLB-Dx-U3w">
+                                                            <rect key="frame" x="1" y="4" width="28" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="28" id="g9d-yP-fE0"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.030471994185088058" green="0.76582084435135322" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="69" id="STA-tp-qaj"/>
-                                                        <constraint firstAttribute="height" constant="21" id="cTf-pq-Bhg"/>
+                                                        <constraint firstItem="WLB-Dx-U3w" firstAttribute="leading" secondItem="U1M-4l-y1D" secondAttribute="leading" constant="1" id="ejd-Fz-b9a"/>
+                                                        <constraint firstAttribute="trailing" secondItem="WLB-Dx-U3w" secondAttribute="trailing" constant="2" id="ewg-e2-TKU"/>
+                                                        <constraint firstAttribute="bottom" secondItem="WLB-Dx-U3w" secondAttribute="bottom" constant="4" id="gQX-YE-luw"/>
+                                                        <constraint firstItem="WLB-Dx-U3w" firstAttribute="top" secondItem="U1M-4l-y1D" secondAttribute="top" constant="4" id="m8B-tf-ebd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="U1M-4l-y1D" secondAttribute="trailing" constant="-3" id="1RE-Q7-h3B"/>
                                                 <constraint firstItem="APV-WA-7AS" firstAttribute="leading" secondItem="x8x-UC-byV" secondAttribute="trailing" constant="8" id="5X9-xz-pwA"/>
                                                 <constraint firstItem="3us-gX-zMp" firstAttribute="top" secondItem="Tfj-Og-7xC" secondAttribute="topMargin" constant="3" id="7Ya-b0-hY6"/>
                                                 <constraint firstItem="x8x-UC-byV" firstAttribute="leading" secondItem="Tfj-Og-7xC" secondAttribute="leading" constant="15" id="8Ia-r0-MOs"/>
-                                                <constraint firstItem="WLB-Dx-U3w" firstAttribute="bottom" secondItem="Tfj-Og-7xC" secondAttribute="bottomMargin" id="JOd-0G-57k"/>
-                                                <constraint firstItem="WLB-Dx-U3w" firstAttribute="trailing" secondItem="Tfj-Og-7xC" secondAttribute="trailingMargin" id="VUG-ht-yH4"/>
                                                 <constraint firstItem="APV-WA-7AS" firstAttribute="top" secondItem="Tfj-Og-7xC" secondAttribute="topMargin" constant="2" id="WFn-Gh-OJG"/>
                                                 <constraint firstItem="cR2-i7-g89" firstAttribute="leading" secondItem="x8x-UC-byV" secondAttribute="trailing" constant="8" id="YW0-MY-EbZ"/>
                                                 <constraint firstItem="cR2-i7-g89" firstAttribute="top" secondItem="APV-WA-7AS" secondAttribute="bottom" constant="-2" id="rbx-dg-5X4"/>
+                                                <constraint firstItem="U1M-4l-y1D" firstAttribute="top" secondItem="3us-gX-zMp" secondAttribute="bottom" constant="1" id="uq4-7R-4KC"/>
                                                 <constraint firstItem="x8x-UC-byV" firstAttribute="centerY" secondItem="Tfj-Og-7xC" secondAttribute="centerY" id="xTF-0T-dPU"/>
                                                 <constraint firstItem="3us-gX-zMp" firstAttribute="trailing" secondItem="Tfj-Og-7xC" secondAttribute="trailingMargin" id="zyQ-ms-raR"/>
                                             </constraints>
@@ -219,6 +231,7 @@
                                             <outlet property="itemImageView" destination="x8x-UC-byV" id="vwn-hG-tJh"/>
                                             <outlet property="nameLabel" destination="APV-WA-7AS" id="QoQ-zX-h2L"/>
                                             <outlet property="priceLabel" destination="3us-gX-zMp" id="N27-FI-5i4"/>
+                                            <outlet property="quantityBackView" destination="U1M-4l-y1D" id="Ydv-g0-GMa"/>
                                             <outlet property="quantityLabel" destination="WLB-Dx-U3w" id="I0N-5S-rcg"/>
                                         </connections>
                                     </tableViewCell>
@@ -401,6 +414,9 @@
                                     <constraint firstAttribute="height" constant="26" id="Mah-zz-u6C"/>
                                 </constraints>
                                 <state key="normal" image="PlusFilled"/>
+                                <connections>
+                                    <action selector="imageBtnPressed:" destination="gDS-0C-OLX" eventType="touchUpInside" id="rQe-8z-bCP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -439,7 +455,7 @@
             </objects>
             <point key="canvasLocation" x="2514.4000000000001" y="-319.79010494752629"/>
         </scene>
-        <!--View Controller-->
+        <!--My Items-->
         <scene sceneID="IWx-yP-dVT">
             <objects>
                 <viewController id="FQE-kE-cGK" sceneMemberID="viewController">
@@ -449,11 +465,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="XCZ-GL-Hds"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="My Items" image="ChecklistFilled" id="Chl-PO-aAf"/>
                     <navigationItem key="navigationItem" id="7Vt-sQ-mUT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhP-ZX-N07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="579"/>
+            <point key="canvasLocation" x="129" y="517"/>
         </scene>
         <!--MyList-->
         <scene sceneID="fav-Td-xvt">
@@ -474,26 +491,9 @@
             </objects>
             <point key="canvasLocation" x="129" y="-319"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="2ld-4l-e46">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WRo-ju-NuD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FEs-cz-UGJ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="FQE-kE-cGK" kind="relationship" relationship="rootViewController" id="Idb-tS-jP5"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7iE-xR-kJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="130" y="579"/>
-        </scene>
     </scenes>
     <resources>
+        <image name="ChecklistFilled" width="25" height="25"/>
         <image name="Plus" width="25" height="25"/>
         <image name="PlusFilled" width="37" height="37"/>
         <image name="ShoppingCartEmpty" width="37" height="37"/>

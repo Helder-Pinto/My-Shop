@@ -11,6 +11,7 @@ import SwipeCellKit
 
 class ShoppingItemViewCell: SwipeTableViewCell {
 
+    @IBOutlet weak var quantityBackView: UIView!
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var extraINfo: UILabel!
@@ -19,6 +20,9 @@ class ShoppingItemViewCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.quantityBackView.layer.cornerRadius = quantityBackView.frame.width / 2
+    
 
     }
 

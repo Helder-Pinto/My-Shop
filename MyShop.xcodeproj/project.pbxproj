@@ -24,6 +24,7 @@
 		18F1D2AA22739EF30064BE52 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D2A922739EF30064BE52 /* AddItemViewController.swift */; };
 		18F1D2AC2273A95F0064BE52 /* ShoppingItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D2AB2273A95F0064BE52 /* ShoppingItemViewCell.swift */; };
 		18F33EDD227459930002FCA5 /* SwipeTableViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F33EDC227459930002FCA5 /* SwipeTableViewHelpers.swift */; };
+		18F33EDF22748C7A0002FCA5 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F33EDE22748C7A0002FCA5 /* Camera.swift */; };
 		C6471627B8056B50DFAB234A /* Pods_MyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF336AF0F6C972EE5D93642 /* Pods_MyShop.framework */; };
 		DD358D1BF60897CE78989030 /* Pods_MyShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850B589C53C9440117544D31 /* Pods_MyShopTests.framework */; };
 		FF674433E8C0F7D5E3A165D3 /* Pods_MyShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508286755D19708EBB717401 /* Pods_MyShopUITests.framework */; };
@@ -70,6 +71,7 @@
 		18F1D2A922739EF30064BE52 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		18F1D2AB2273A95F0064BE52 /* ShoppingItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemViewCell.swift; sourceTree = "<group>"; };
 		18F33EDC227459930002FCA5 /* SwipeTableViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewHelpers.swift; sourceTree = "<group>"; };
+		18F33EDE22748C7A0002FCA5 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		252EAF6058B3052BEE749356 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		4D5F68A86FD0F6A2A100DA51 /* Pods-MyShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShopTests.release.xcconfig"; path = "Target Support Files/Pods-MyShopTests/Pods-MyShopTests.release.xcconfig"; sourceTree = "<group>"; };
 		508286755D19708EBB717401 /* Pods_MyShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +185,7 @@
 				18F1D2A022735F050064BE52 /* Utilities.swift */,
 				18F1D29E22735DF50064BE52 /* Constants.swift */,
 				18F33EDC227459930002FCA5 /* SwipeTableViewHelpers.swift */,
+				18F33EDE22748C7A0002FCA5 /* Camera.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				18F1D2AC2273A95F0064BE52 /* ShoppingItemViewCell.swift in Sources */,
 				18F1D2AA22739EF30064BE52 /* AddItemViewController.swift in Sources */,
 				18F33EDD227459930002FCA5 /* SwipeTableViewHelpers.swift in Sources */,
+				18F33EDF22748C7A0002FCA5 /* Camera.swift in Sources */,
 				18F1D29D22735BF60064BE52 /* ShoppingList.swift in Sources */,
 				18F1D299227355460064BE52 /* AllListViewController.swift in Sources */,
 				18F1D26922734EC40064BE52 /* AppDelegate.swift in Sources */,

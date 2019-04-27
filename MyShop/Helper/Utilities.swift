@@ -27,6 +27,7 @@ func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
     
     layer.masksToBounds = true
     layer.cornerRadius = CGFloat(radius)
+    imageView.clipsToBounds = true
     
     UIGraphicsBeginImageContext(imageView.bounds.size)
     layer.render(in: UIGraphicsGetCurrentContext()!)
