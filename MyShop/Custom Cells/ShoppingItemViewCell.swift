@@ -32,7 +32,7 @@ class ShoppingItemViewCell: SwipeTableViewCell {
         self.nameLabel.text = item.name
         self.extraINfo.text = item.info
         self.quantityLabel.text = item.quantity
-        self.priceLabel.text = "$ \(item.price)"
+        self.priceLabel.text = "$ \(String(format: "%.2f", item.price))"
         
         
         self.priceLabel.sizeToFit()
@@ -40,6 +40,21 @@ class ShoppingItemViewCell: SwipeTableViewCell {
         self.extraINfo.sizeToFit()
         
         //add image
+        
+        if item.image != "" {
+            
+            imageFromData(pictureData: item.image) { (image) in
+                self.itemImageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+                
+            }
+            
+        } else {
+            let image = UIImage(named: "ShoppingCartEmpty")
+            
+            self.itemImageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+            
+        }
+        
     }
 
 }
