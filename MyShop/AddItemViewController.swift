@@ -15,6 +15,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     var shoppingList: ShoppingList!
     var itemImage: UIImage?
     var shoppingToEditItem: ShoppingDetail?
+    var addingToList: Bool?
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var priceField: UITextField!
@@ -119,6 +120,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     return
                 }
             })
+            self.dismiss(animated:true, completion: nil)
         } else {
             //update grocery item
         }
@@ -126,6 +128,8 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func saveItem() {
+        
+        var shoppingProd: ShoppingDetail
         
         var imageData: String!
         
@@ -136,17 +140,42 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             imageData = ""
         }
         
-        let shoppingItem = ShoppingDetail(_name: nameTextFiield.text!, _info: extraInfoField.text!, _quantity: quantityField.text!, _price: Float( priceField.text!)!, _shoppingListId: shoppingList.id)
-        
-        shoppingItem.image = imageData
-     
-        shoppingItem.saveItemsInBackground(shoppingItem: shoppingItem) { (error) in
-            if error != nil {
-                
-                SVProgressHUD.showError(withStatus: "Error saving shopping item")
-                return 
+        if addingToList! {
+            //add to products list only
+            shoppingProd = ShoppingDetail(_name: nameTextFiield.text!, _info: extraInfoField.text!, _price: Float(priceField.text!)!, _shoppingListId: "")
+            
+            let productItem = GroceryItem(shoppingItem: shoppingProd)
+            productItem.image = imageData
+            
+            productItem.saveItemInBackground(groceryItem: productItem) { (error) in
+                if error != nil {
+                    
+                    SVProgressHUD.showError(withStatus: "Error Saving grocery item")
+                    return
+                }
             }
+            
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        } else {
+            
+            //save to current shopping list
+            
+            let shoppingItem = ShoppingDetail(_name: nameTextFiield.text!, _info: extraInfoField.text!, _quantity: quantityField.text!, _price: Float( priceField.text!)!, _shoppingListId: shoppingList.id)
+            
+            shoppingItem.image = imageData
+            
+            shoppingItem.saveItemsInBackground(shoppingItem: shoppingItem,  completion: { (error) in
+                if error != nil {
+                    
+                    SVProgressHUD.showError(withStatus: "Error saving shopping item")
+                    return
+                }
+            })
         }
+        
+        
         
     }
     

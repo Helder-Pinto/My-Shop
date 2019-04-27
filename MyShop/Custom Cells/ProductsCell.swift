@@ -24,7 +24,25 @@ class ProductsCell: ShoppingItemViewCell{
         
     }
     
-    func bindData(item: ProductsItem) {
+    func bindData(item: GroceryItem) {
+        
+        self.nameLabel.text = item.name
+        self.extraINfo.text = item.info
+        self.priceLabel.text = "$\(String(format: "%.2f", item.price))"
+        
+        if item.image != "" {
+            
+            imageFromData(pictureData: item.image) { (image) in
+                self.itemImageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+                
+            }
+            
+        } else {
+            let image = UIImage(named: "ShoppingCartEmpty")
+            
+            self.itemImageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+            
+        }
         
     }
 

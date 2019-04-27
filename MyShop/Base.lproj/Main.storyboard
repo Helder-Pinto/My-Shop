@@ -613,6 +613,7 @@
                     <navigationItem key="navigationItem" id="7Vt-sQ-mUT"/>
                     <connections>
                         <outlet property="addButton" destination="kfo-pu-v5U" id="4QQ-f8-NHe"/>
+                        <outlet property="tableView" destination="59p-bf-BK4" id="df4-VL-T2E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhP-ZX-N07" userLabel="First Responder" sceneMemberID="firstResponder"/>
