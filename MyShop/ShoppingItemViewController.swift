@@ -21,6 +21,8 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     var shoppingItems: [ShoppingDetail] = []
     var boughtItems: [ShoppingDetail] = []
     
+    var totalPrice: Float!
+    
     @IBOutlet weak var itemsLeftLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
@@ -142,8 +144,18 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
             }else {
                 print("no snapshot")
             }
-            self.tableView.reloadData()
+            
+            self.calculateTotal()
+            self.updateUI()
         })
+    }
+    
+    
+    func updateUI() {
+        self.itemsLeftLabel.text = "Items Left: \(self.shoppingItems.count)"
+        self.totalPriceLabel.text = "Total Price: $ \(String(format:"%.2f", self.totalPrice!))"
+        
+        self.tableView.reloadData()
     }
     //MARK: SwipeTableViewCell delegate functions
     
@@ -217,9 +229,39 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
         action.backgroundColor = descriptor.color
     }
     
-    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle = orientation == .left ? .selection : .destructive
+        options.transitionStyle = defaultOptions.transitionStyle
+        options.buttonSpacing = 11
+        
+        return options 
+    }
     
     //MARK: Helper functions
+    
+    func calculateTotal () {
+        
+        self.totalPrice = 0
+        for item in boughtItems {
+            self.totalPrice = self.totalPrice + item.price
+            
+        }
+        for item in shoppingItems {
+            totalPrice = totalPrice + item.price
+        }
+        self.totalPriceLabel.text = "Total Price: \(String(format: "%.2f", self.totalPrice!))"
+        
+        shoppingDetails.totalPrice = self.totalPrice
+        shoppingDetails.totalItems = self.boughtItems.count + self.shoppingItems.count
+        
+        shoppingDetails.updateItemInBackground(shoppingList: shoppingDetails) { (error) in
+            if error != nil {
+                SVProgressHUD.showError(withStatus: "Error updating shopping list")
+                return
+            }
+        }
+    }
     
     func titleViewForTable(titleText: String) -> UIView {
         

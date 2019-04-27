@@ -54,7 +54,7 @@ class AddItemViewController: UIViewController {
         
         let shoppingItem = ShoppingDetail(_name: nameTextFiield.text!, _info: extraInfoField.text!, _quantity: quantityField.text!, _price: Float( priceField.text!)!, _shoppingListId: shoppingList.id)
      
-        shoppingItem.saveItemsInBackground(shoppingDetail: shoppingItem) { (error) in
+        shoppingItem.saveItemsInBackground(shoppingItem: shoppingItem) { (error) in
             if error != nil {
                 
                 SVProgressHUD.showError(withStatus: "Error saving shopping item")

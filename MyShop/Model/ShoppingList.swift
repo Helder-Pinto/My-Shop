@@ -55,6 +55,18 @@ class ShoppingList {
             completion(error)
         }
     }
+    
+    func updateItemInBackground(shoppingList: ShoppingList, completion: @escaping (_ error: Error? ) -> Void) {
+        
+        let ref = firebase.child(kSHOPPINGLIST).child("1234").child(shoppingList.id)
+        
+        ref.setValue(dictionaryFromItem(item: shoppingList)) { (error, ref) in
+            completion(error)
+        }
+        
+    }
+    
+    
     func deleteItemInBackground(shoppinList: ShoppingList) {
         
         let ref = firebase.child(kSHOPPINGLIST).child("1234").child(shoppinList.id)
