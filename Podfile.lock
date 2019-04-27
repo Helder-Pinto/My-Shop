@@ -68,12 +68,14 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - SVProgressHUD (2.2.5)
+  - SwipeCellKit (2.5.4)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - SVProgressHUD
+  - SwipeCellKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -90,6 +92,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - SVProgressHUD
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
@@ -105,7 +108,8 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwipeCellKit: 4eada3884ab1bbae5e8d2fb9030c242aa23d7f42
 
-PODFILE CHECKSUM: 6fe70e543939f6929968ad50e7279110f0cd0d48
+PODFILE CHECKSUM: 5432513c6853e43a65a9c5f7e3a3bb3613429761
 
 COCOAPODS: 1.6.1

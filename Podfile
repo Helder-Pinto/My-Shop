@@ -10,6 +10,7 @@ target 'MyShop' do
  pod 'Firebase/Core'
  pod 'Firebase/Auth'
  pod 'SVProgressHUD'
+ pod 'SwipeCellKit'
 
   target 'MyShopTests' do
     inherit! :search_paths

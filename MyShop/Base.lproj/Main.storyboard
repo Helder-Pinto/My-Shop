@@ -152,7 +152,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-UC-byV">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ShoppingCartEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-UC-byV">
                                                     <rect key="frame" x="15" y="10" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="CBB-nB-PBo"/>
@@ -213,6 +213,14 @@
                                                 <constraint firstItem="3us-gX-zMp" firstAttribute="trailing" secondItem="Tfj-Og-7xC" secondAttribute="trailingMargin" id="zyQ-ms-raR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="extraINfo" destination="cR2-i7-g89" id="vfg-8W-z7i"/>
+                                            <outlet property="imageView" destination="x8x-UC-byV" id="K7X-5Y-tAt"/>
+                                            <outlet property="itemImageView" destination="x8x-UC-byV" id="vwn-hG-tJh"/>
+                                            <outlet property="nameLabel" destination="APV-WA-7AS" id="QoQ-zX-h2L"/>
+                                            <outlet property="priceLabel" destination="3us-gX-zMp" id="N27-FI-5i4"/>
+                                            <outlet property="quantityLabel" destination="WLB-Dx-U3w" id="I0N-5S-rcg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

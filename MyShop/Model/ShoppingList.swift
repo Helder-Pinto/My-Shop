@@ -55,7 +55,7 @@ class ShoppingList {
             completion(error)
         }
     }
-    func delteItemInBackground(shoppinList: ShoppingList) {
+    func deleteItemInBackground(shoppinList: ShoppingList) {
         
         let ref = firebase.child(kSHOPPINGLIST).child("1234").child(shoppinList.id)
         ref.removeValue()
