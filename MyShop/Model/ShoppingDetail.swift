@@ -43,6 +43,22 @@ class ShoppingDetail {
         image = dictionary[kIMAGE] as! String
         
     }
+    
+    
+    init(grocerItem: GroceryItem) {
+        
+        self.name = grocerItem.name
+        self.info = grocerItem.info
+        self.quantity = "1"
+        self.price = grocerItem.price
+        self.shoppingListId = ""
+        self.shoppingItemId = ""
+        self.isBought = false
+        self.image = grocerItem.image
+        
+    }
+    
+    
     func dictionaryFromItem(item: ShoppingDetail) -> NSDictionary {
 
         return NSDictionary(objects: [item.name, item.info, item.quantity, item.price, item.shoppingItemId, item.shoppingListId, item.isBought, item.image], forKeys: [kNAME as NSCopying, kINFO as NSCopying, kQUANTITY as NSCopying, kPRICE as NSCopying, kSHOPPINGITEMID as NSCopying, kSHOPPINGLISTID as NSCopying, kISBOUGHT as NSCopying, kIMAGE as NSCopying])

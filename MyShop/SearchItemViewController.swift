@@ -9,24 +9,53 @@
 import UIKit
 import SwipeCellKit
 
-class SearchItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+protocol SearchItemViewControllerdelegate {
+    func didChooseItem(groceryItem: GroceryItem)
+}
 
+class SearchItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, UISearchResultsUpdating {
+    
+    
     var groceryItems: [GroceryItem] = []
+    var filteredGroceryItems: [GroceryItem] = []
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = false
+    var clickToEdit = true
     
+    var delegate: SearchItemViewControllerdelegate?
+   
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cancelBtn.isHidden = clickToEdit
+        addButton.isHidden = !clickToEdit
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        
+        tableView.tableHeaderView = searchController.searchBar
+        
         loadGroceryItems()
+        
 
     }
     
     //MARK: Tableview datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            
+            return filteredGroceryItems.count
+        }
         return groceryItems.count
     }
     
@@ -38,12 +67,59 @@ class SearchItemViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.delegate = self
         cell.selectedBackgroundView = createSelectedBackgroundView()
         
-        let productItem = groceryItems[indexPath.row]
-        cell.bindData(item: productItem)
+        var item:GroceryItem
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+           
+            item = filteredGroceryItems[indexPath.row]
+        } else {
+             item =  groceryItems[indexPath.row]
+        }
+        
+
+        cell.bindData(item: item)
         
         
         return cell
     }
+    
+    //MARK: TableView Delegate functions
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var item:GroceryItem
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            
+            item = filteredGroceryItems[indexPath.row]
+        } else {
+            item =  groceryItems[indexPath.row]
+        }
+        
+        
+        if !clickToEdit {
+            
+            self.delegate!.didChooseItem(groceryItem: item)
+            
+            
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            
+            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddItemVC") as! AddItemViewController
+            
+            vc.grocItem = item
+            
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+        
+        
+        
+        
+    }
+    
     
     //MARK: UIActions
     
@@ -57,6 +133,10 @@ class SearchItemViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.present(vc, animated: true, completion: nil)
         
+    }
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     //MARK: Load grocery items
     
@@ -101,9 +181,21 @@ class SearchItemViewController: UIViewController, UITableViewDelegate, UITableVi
             let delete = SwipeAction(style: .destructive, title: nil, handler: { (action, indexPath) in
                 
                 var item: GroceryItem
-                item = self.groceryItems[indexPath.row]
                 
-                self.groceryItems.remove(at: indexPath.row)
+                if self.searchController.isActive && self.searchController.searchBar.text != "" {
+                    
+                     item = self.filteredGroceryItems[indexPath.row]
+                        self.filteredGroceryItems.remove(at: indexPath.row)
+                    
+                } else {
+                    
+                    
+                    item = self.groceryItems[indexPath.row]
+                    
+                    self.groceryItems.remove(at: indexPath.row)
+                    
+                }
+              
                 
                 item.deleteItemInBackground(groceryItem: item)
                 
@@ -130,8 +222,22 @@ class SearchItemViewController: UIViewController, UITableViewDelegate, UITableVi
             options.buttonSpacing = 11
             
             return options
-        
-        
 
+    }
+    
+    //MARK: SearchController
+    
+    func filterContentForSearchText(searchText: String, Scope: String = "All") {
+        
+        filteredGroceryItems = groceryItems.filter({ (item) -> Bool in
+            
+            return item.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }

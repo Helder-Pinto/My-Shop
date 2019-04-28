@@ -16,6 +16,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     var itemImage: UIImage?
     var shoppingToEditItem: ShoppingDetail?
     var addingToList: Bool?
+    var grocItem: GroceryItem?
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var priceField: UITextField!
@@ -30,7 +31,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         let image = UIImage(named: "ShoppingCartEmpty")
         imageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
         
-        if shoppingToEditItem != nil {
+        if shoppingToEditItem != nil || grocItem != nil {
             
             updateItemDetail()
         }
@@ -71,7 +72,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
     @IBAction func saveBtnPressed(_ sender: Any) {
         if nameTextFiield.text  != "" && priceField.text != "" {
             
-            if shoppingToEditItem != nil {
+            if shoppingToEditItem != nil || grocItem != nil {
                 
                 self.updateEditedItem()
                 
@@ -84,8 +85,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             
             SVProgressHUD.showError(withStatus: "Empty fields!")
         }
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
  
@@ -121,8 +120,22 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 }
             })
             self.dismiss(animated:true, completion: nil)
-        } else {
-            //update grocery item
+            
+        } else  if grocItem != nil {
+            
+            grocItem!.name = nameTextFiield.text!
+            grocItem!.price = Float(priceField.text!)!
+            grocItem!.info = extraInfoField.text!
+            grocItem!.image = imageData
+            
+            grocItem?.updateItemInBackground(groceryItem: grocItem!, completion: { (error) in
+                if error != nil {
+                    SVProgressHUD.showError(withStatus: "Error updating grocery item")
+                    return
+                }
+            })
+            
+            
         }
         
     }
@@ -173,10 +186,37 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                     return
                 }
             })
+            
+            showListNotification(shoppingItem: shoppingItem)
+        }
+    }
+    
+    func showListNotification(shoppingItem: ShoppingDetail) {
+        
+        let alertController = UIAlertController(title: "Shopping Items", message: "Do you want to add this item to your item?", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+            self.dismiss(animated: true, completion: nil)
         }
         
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
+            //save to grocery lis
+            
+            let groceryItem = GroceryItem(shoppingItem: shoppingItem)
+            
+            groceryItem.saveItemInBackground(groceryItem: groceryItem, completion: { (error) in
+                if error != nil {
+                    SVProgressHUD.showError(withStatus: "Error creating grocery item")
+                }
+            })
+            
+            self.dismiss(animated: true, completion: nil)
         
+        }
+        alertController.addAction(noAction)
+        alertController.addAction(yesAction)
         
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK: UIImagePickerController delegate
@@ -211,12 +251,27 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             }
             
             
-        } else {
+        } else  if grocItem != nil {
+            self.nameTextFiield.text = self.grocItem!.name
+            self.extraInfoField.text = self.grocItem!.info
+            self.quantityField.text = ""
+            self.priceField.text = "\(self.grocItem!.price)"
+            
+            if grocItem!.image != ""{
+                
+                
+                imageFromData(pictureData: grocItem!.image) { (image) in
+                    self.itemImage = image!
+                    imageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+                }
+            }
+            
             
         }
     }
     
     
 }
+
 
 

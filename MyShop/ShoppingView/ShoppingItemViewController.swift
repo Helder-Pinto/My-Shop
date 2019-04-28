@@ -10,7 +10,7 @@ import UIKit
 import SwipeCellKit
 import SVProgressHUD
 
-class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SwipeTableViewCellDelegate{
+class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SwipeTableViewCellDelegate, SearchItemViewControllerdelegate{
     
     
     var defaultOptions = SwipeTableOptions()
@@ -146,6 +146,7 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddItemVC") as! AddItemViewController
             
             vc.shoppingList = self.shoppingDetails
+            vc.addingToList = false
             
             self.present(vc, animated: true, completion: nil)
    
@@ -156,6 +157,12 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
             
             
             
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchVc") as! SearchItemViewController
+            
+            vc.delegate = self
+            vc.clickToEdit = false
+            
+           self.present(vc, animated: true, completion: nil)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
@@ -324,5 +331,22 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
         
         view.addSubview(titleLabel)
         return view
+    }
+    
+    //MARK: SearchItemViewControllerDelegate
+    
+    func didChooseItem(groceryItem: GroceryItem) {
+        
+        let shopingItem = ShoppingDetail(grocerItem: groceryItem)
+        shopingItem.shoppingListId = shoppingDetails.id
+        
+        shopingItem.saveItemsInBackground(shoppingItem: shopingItem) { (error) in
+            
+            if error != nil {
+                
+                SVProgressHUD.showError(withStatus: "error choosing item")
+            }
+            
+        }
     }
 }
