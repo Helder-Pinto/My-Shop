@@ -32,8 +32,9 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        totalPrice = shoppingDetails.totalPrice
         loadShoppingItems()
+        updateUI()
 
        
     }
@@ -209,8 +210,11 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     
     
     func updateUI() {
+        
+        let currency = userDefaults.value(forKey: kCURRENCY) as! String
+        
         self.itemsLeftLabel.text = "Items Left: \(self.shoppingItems.count)"
-        self.totalPriceLabel.text = "Total Price: $ \(String(format:"%.2f", self.totalPrice!))"
+        self.totalPriceLabel.text = "Total Price: \(currency) \(String(format:"%.2f", self.totalPrice!))"
         
         self.tableView.reloadData()
     }

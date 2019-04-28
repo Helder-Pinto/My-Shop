@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1810A39122752DEC0048B296 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810A39022752DEC0048B296 /* SettingsViewController.swift */; };
 		18F1D26922734EC40064BE52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1D26822734EC40064BE52 /* AppDelegate.swift */; };
 		18F1D26E22734EC40064BE52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F1D26C22734EC40064BE52 /* Main.storyboard */; };
 		18F1D27022734EC60064BE52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F1D26F22734EC60064BE52 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1810A39022752DEC0048B296 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		18F1D26522734EC40064BE52 /* MyShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F1D26822734EC40064BE52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F1D26D22734EC40064BE52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				18F1D26822734EC40064BE52 /* AppDelegate.swift */,
 				18F1D2A922739EF30064BE52 /* AddItemViewController.swift */,
 				18F33EE12274BF0D0002FCA5 /* SearchItemViewController.swift */,
+				1810A39022752DEC0048B296 /* SettingsViewController.swift */,
 				18F33EE02274BD0B0002FCA5 /* ShoppingView */,
 				18F1D2A6227383EF0064BE52 /* Custom Cells */,
 				18F1D2A22273684F0064BE52 /* Model */,
@@ -483,6 +486,7 @@
 				18F1D2A8227386D90064BE52 /* ShoppingDetail.swift in Sources */,
 				18F33EE22274BF0D0002FCA5 /* SearchItemViewController.swift in Sources */,
 				18F1D2AC2273A95F0064BE52 /* ShoppingItemViewCell.swift in Sources */,
+				1810A39122752DEC0048B296 /* SettingsViewController.swift in Sources */,
 				18F1D2AA22739EF30064BE52 /* AddItemViewController.swift in Sources */,
 				18F33EDD227459930002FCA5 /* SwipeTableViewHelpers.swift in Sources */,
 				18F33EE42274BF880002FCA5 /* ProductsCell.swift in Sources */,

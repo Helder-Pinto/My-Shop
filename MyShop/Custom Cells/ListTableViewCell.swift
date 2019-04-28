@@ -27,6 +27,8 @@ class ListTableViewCell: UITableViewCell {
     
     func bindData(item: ShoppingList) {
         
+        let currency = userDefaults.value(forKey: kCURRENCY) as! String
+        
         let currentDateFormatter = dateFormatter()
         currentDateFormatter.dateFormat = "dd/MM/YYYY"
         
@@ -34,7 +36,7 @@ class ListTableViewCell: UITableViewCell {
         
         self.nameLabel.text = item.name
         self.itemsLabel.text = "\(item.totalItems) items"
-        self.totalLabel.text = "Total $ \(String(format: "%.2f", item.totalPrice))"
+        self.totalLabel.text = "Total \(currency) \(String(format: "%.2f", item.totalPrice))"
         self.dateLabel.text = date
         
         self.nameLabel.sizeToFit()

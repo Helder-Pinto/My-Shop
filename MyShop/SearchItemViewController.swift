@@ -31,7 +31,10 @@ class SearchItemViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        self.tableView.setContentOffset((CGPoint(x: 0.0, y: 44.0)), animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
