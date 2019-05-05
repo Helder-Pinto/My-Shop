@@ -12,22 +12,24 @@ class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var itemsLabel: UILabel!
+
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     
     func bindData(item: ShoppingList) {
         
-        let currency = userDefaults.value(forKey: kCURRENCY) as! String
+        let currency = "$"
+        //userDefaults.value(forKey: kCURRENCY) as! String
         
         let currentDateFormatter = dateFormatter()
         currentDateFormatter.dateFormat = "dd/MM/YYYY"
@@ -42,5 +44,5 @@ class ListTableViewCell: UITableViewCell {
         self.nameLabel.sizeToFit()
         self.totalLabel.sizeToFit()
     }
-
+    
 }

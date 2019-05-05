@@ -25,7 +25,8 @@ class ProductsCell: ShoppingItemViewCell{
     }
     
     func bindData(item: GroceryItem) {
-         let currency = userDefaults.value(forKey: kCURRENCY) as! String
+         let currency = "$"
+            //userDefaults.value(forKey: kCURRENCY) as! String
         self.nameLabel.text = item.name
         self.extraINfo.text = item.info
         self.priceLabel.text = "\(currency) \(String(format: "%.2f", item.price))"

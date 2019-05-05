@@ -9,6 +9,7 @@
 import UIKit
 import SwipeCellKit
 import SVProgressHUD
+import ChameleonFramework
 
 class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SwipeTableViewCellDelegate, SearchItemViewControllerdelegate{
     
@@ -32,6 +33,8 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
+    
         totalPrice = shoppingDetails.totalPrice
         loadShoppingItems()
         updateUI()
@@ -67,11 +70,25 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
         if indexPath.section == 0 {
             item = shoppingItems[indexPath.row]
             
+            if let colour = FlatSkyBlue().darken(byPercentage:
+                CGFloat (indexPath.row) / CGFloat(shoppingItems.count)) {
+                cell.backgroundColor = colour
+                cell.textLabel?.textColor = ContrastColorOf(backgroundColor: colour, returnFlat: true)
+            }
+            
         }else {
             item = boughtItems[indexPath.row]
+            if let colour = FlatSkyBlue().darken(byPercentage:
+                CGFloat (indexPath.row) / CGFloat(boughtItems.count)) {
+                cell.backgroundColor = colour
+                cell.textLabel?.textColor = ContrastColorOf(backgroundColor: colour, returnFlat: true)
+            }
         }
         
         cell.bindData(item: item)
+        
+      
+        
         
         return cell
     }
@@ -211,7 +228,8 @@ class ShoppingItemViewController: UIViewController , UITableViewDataSource, UITa
     
     func updateUI() {
         
-        let currency = userDefaults.value(forKey: kCURRENCY) as! String
+        let currency = "$"
+            //userDefaults.value(forKey: kCURRENCY) as! String
         
         self.itemsLeftLabel.text = "Items Left: \(self.shoppingItems.count)"
         self.totalPriceLabel.text = "Total Price: \(currency) \(String(format:"%.2f", self.totalPrice!))"

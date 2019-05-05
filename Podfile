@@ -11,6 +11,7 @@ target 'MyShop' do
  pod 'Firebase/Auth'
  pod 'SVProgressHUD'
  pod 'SwipeCellKit'
+ pod 'ChameleonFramework/Swift'
 
   target 'MyShopTests' do
     inherit! :search_paths

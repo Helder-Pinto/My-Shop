@@ -29,7 +29,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         //print(shoppingToEditItem!.name)
         
         let image = UIImage(named: "ShoppingCartEmpty")
-        imageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+        
         
         if shoppingToEditItem != nil || grocItem != nil {
             
@@ -75,6 +75,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
             if shoppingToEditItem != nil || grocItem != nil {
                 
                 self.updateEditedItem()
+                self.dismiss(animated: true, completion: nil)
                 
             } else{
                 saveItem()
@@ -225,7 +226,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
         
         self.itemImage = (info[UIImagePickerController.InfoKey.editedImage]) as? UIImage
         
-        self.imageView.image = maskRoundedImage(image: itemImage!, radius: Float(itemImage!.size.width/2))
+        self.imageView.image = itemImage
         
         picker.dismiss(animated: true, completion: nil)
     }
@@ -246,7 +247,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 
                 imageFromData(pictureData: shoppingToEditItem!.image) { (image) in
                      self.itemImage = image!
-                     imageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+                     imageView.image = image!
                 }
             }
             
@@ -262,7 +263,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate, U
                 
                 imageFromData(pictureData: grocItem!.image) { (image) in
                     self.itemImage = image!
-                    imageView.image = maskRoundedImage(image: image!, radius: Float(image!.size.width/2))
+                    imageView.image = image!
                 }
             }
             

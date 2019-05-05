@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import ChameleonFramework
 
 class AllListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,6 +19,7 @@ class AllListViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLists()
+        tableView.separatorStyle = .none
 
 
     }
@@ -27,13 +29,18 @@ class AllListViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allLists.count
     }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ListTableViewCell
         
         let shoppingList = allLists[indexPath.row]
         
+        
         cell.bindData(item: shoppingList)
+        
+        cell.backgroundColor = UIColor.randomFlat()
         
         return cell
         
